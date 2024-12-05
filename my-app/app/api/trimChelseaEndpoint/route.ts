@@ -82,7 +82,7 @@ export async function GET() {
             matchDate: game.kickoffDate,
             broadcasterLogoUrl: game?.broadcasterLogo?.file?.url || '',
             homeCrestUrl,
-            awayCrestUrl, // Include both team crest URLs
+            awayCrestUrl,
           }
         }),
       ) || []
