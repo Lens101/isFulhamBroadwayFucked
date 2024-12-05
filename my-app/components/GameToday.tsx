@@ -13,7 +13,7 @@ type GameInfo = {
   broadcasterLogoUrl: string
 }
 
-const GameToday: React.FC = () => {
+const GameToday = () => {
   const [gameToday, setGameToday] = useState<boolean>(false)
   const [gameInfo, setGameInfo] = useState<GameInfo | null>(null)
   const [error, setError] = useState<string | null>(null)

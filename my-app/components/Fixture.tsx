@@ -39,53 +39,114 @@ const Fixture = () => {
     fetchData()
   }, [])
 
+  const currentDate = new Date()
+
+  const previousFixtures = fixtures.filter(
+    (fixture) => new Date(fixture.matchDate) < currentDate,
+  )
+  const upcomingFixtures = fixtures.filter(
+    (fixture) => new Date(fixture.matchDate) >= currentDate,
+  )
+
   if (error) {
     return <div className="text-red-500">{error}</div>
   }
 
   return (
     <div className="p-4 space-y-8 w-auto max-w-2xl m-auto">
-      {fixtures.map((fixture, index) => (
-        <div key={index} className="bg-white shadow-lg p-4 rounded-md">
-          <div className="text-center text-lg font-semibold text-gray-800">
-            {fixture.matchDate}
+      {/* Previous Fixtures */}
+      {previousFixtures.length > 0 && (
+        <div>
+          <div className="text-lg font-bold text-white border-b border-gray-300 pb-2 mb-4">
+            Previous Games
           </div>
-          <div className="text-center text-sm text-gray-600">
-            {fixture.competition} | {fixture.venue}
-          </div>
-
-          <div className="flex items-center mt-4 justify-between">
-            {/* Home Team */}
-            <div className="flex items-center space-x-2">
-              <img
-                src={fixture.homeCrestUrl}
-                alt="home logo"
-                className="w-10 h-10"
-              />
-              <span className="font-medium text-md text-gray-900">
-                {fixture.homeTeam}
-              </span>
+          {previousFixtures.map((fixture, index) => (
+            <div key={index} className="bg-white shadow-lg p-4 rounded-md mb-4">
+              <div className="text-center text-lg font-semibold text-gray-800">
+                {fixture.matchDate}
+              </div>
+              <div className="text-center text-sm text-gray-600">
+                {fixture.competition} | {fixture.venue}
+              </div>
+              <div className="flex items-center mt-4 justify-between">
+                {/* Home Team */}
+                <div className="flex items-center space-x-2">
+                  <img
+                    src={fixture.homeCrestUrl}
+                    alt="home logo"
+                    className="w-10 h-10"
+                  />
+                  <span className="font-medium text-md text-gray-900">
+                    {fixture.homeTeam}
+                  </span>
+                </div>
+                {/* Kickoff Time */}
+                <div className="text-center font-bold text-xl text-gray-900 absolute left-1/2 transform -translate-x-1/2">
+                  {fixture.kickoffTime}
+                </div>
+                {/* Away Team */}
+                <div className="flex items-center space-x-2">
+                  <span className="font-medium text-md text-gray-900">
+                    {fixture.awayTeam}
+                  </span>
+                  <img
+                    src={fixture.awayCrestUrl}
+                    alt="away logo"
+                    className="w-10 h-10"
+                  />
+                </div>
+              </div>
             </div>
-
-            {/* Kickoff Time */}
-            <div className="text-center font-bold text-xl text-gray-900 absolute left-1/2 transform -translate-x-1/2">
-              {fixture.kickoffTime}
-            </div>
-
-            {/* Away Team */}
-            <div className="flex items-center space-x-2">
-              <span className="font-medium text-md text-gray-900">
-                {fixture.awayTeam}
-              </span>
-              <img
-                src={fixture.awayCrestUrl}
-                alt="away logo"
-                className="w-10 h-10"
-              />
-            </div>
-          </div>
+          ))}
         </div>
-      ))}
+      )}
+
+      {/* Upcoming Fixtures */}
+      {upcomingFixtures.length > 0 && (
+        <div>
+          <div className="text-lg font-bold text-white border-b border-gray-300 pb-2 mb-4">
+            Upcoming Games
+          </div>
+          {upcomingFixtures.map((fixture, index) => (
+            <div key={index} className="bg-white shadow-lg p-4 rounded-md mb-4">
+              <div className="text-center text-lg font-semibold text-gray-800">
+                {fixture.matchDate}
+              </div>
+              <div className="text-center text-sm text-gray-600">
+                {fixture.competition} | {fixture.venue}
+              </div>
+              <div className="flex items-center mt-4 justify-between">
+                {/* Home Team */}
+                <div className="flex items-center space-x-2">
+                  <img
+                    src={fixture.homeCrestUrl}
+                    alt="home logo"
+                    className="w-10 h-10"
+                  />
+                  <span className="font-medium text-md text-gray-900">
+                    {fixture.homeTeam}
+                  </span>
+                </div>
+                {/* Kickoff Time */}
+                <div className="text-center font-bold text-xl text-gray-900 absolute left-1/2 transform -translate-x-1/2">
+                  {fixture.kickoffTime}
+                </div>
+                {/* Away Team */}
+                <div className="flex items-center space-x-2">
+                  <span className="font-medium text-md text-gray-900">
+                    {fixture.awayTeam}
+                  </span>
+                  <img
+                    src={fixture.awayCrestUrl}
+                    alt="away logo"
+                    className="w-10 h-10"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
