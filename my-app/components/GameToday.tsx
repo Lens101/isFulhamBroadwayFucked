@@ -1,18 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react'
-
-type GameInfo = {
-  homeTeam: string
-  awayTeam: string
-  isChelseaAtHome: boolean
-  venue: string
-  kickoffTime: string
-  competition: string
-  clubCrestUrl: string
-  matchDate: string
-  broadcasterLogoUrl: string
-}
-
+import type { GameInfo } from './validation/game_info_validation'
 const GameToday = () => {
   const [gameToday, setGameToday] = useState<boolean>(false)
   const [gameInfo, setGameInfo] = useState<GameInfo | null>(null)

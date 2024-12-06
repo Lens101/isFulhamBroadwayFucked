@@ -1,23 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-
-export type TMatch = {
-  game: string
-  date: string
-  time: string
-  teams: string
-  stadium: string
-}
-
-export type TMatchesResponse = {
-  previous: TMatch[]
-  upcoming: TMatch[]
-}
-
-type TProps = {
-  fetchMatches: () => Promise<TMatch[]> // Ensure the function returns a Promise
-}
+import type { TMatch, TProps } from './validation/client_button_validation.ts'
 
 export default function ClientButton({ fetchMatches }: TProps) {
   const [data, setData] = useState<TMatch[] | null>(null)
