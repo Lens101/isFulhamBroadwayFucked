@@ -1,19 +1,6 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-
-type Fixture = {
-  homeTeam: string
-  awayTeam: string
-  isChelseaAtHome: boolean
-  venue: string
-  kickoffTime: string
-  competition: string
-  clubCrestUrl: string
-  matchDate: string
-  broadcasterLogoUrl: string
-  homeCrestUrl: string
-  awayCrestUrl: string
-}
+import type { Fixture } from './validation/fixture_validation'
 
 const Fixture = () => {
   const [fixtures, setFixtures] = useState<Fixture[]>([])
